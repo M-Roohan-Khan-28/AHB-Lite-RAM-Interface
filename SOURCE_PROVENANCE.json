@@ -1,0 +1,19 @@
+{
+  "source_repository": "https://github.com/rouhan28may-droid/hdl-labs.git",
+  "source_commit": "df8d6f66898a08df75cd2071ddac7bbba9ba9b16",
+  "source_folder": "projects/ahb-lite-ram",
+  "extraction": "Source snapshot, not a new implementation or new verification run.",
+  "source_sha256": {
+    "docs/verification_plan.md": "b6faf968b370d8d7cbe8e64398e80edaa3de65c083fb14dbd6754837caf48d99",
+    "SOURCE_README.md": "412d7573b73b43c900bba0e062780a5c60fabfed19dc7506637c3bc27949e2be",
+    "reports/compile.log": "161c9a6fe5861775775cfdda9e6eff3c55c13501555589a97e81626b26b97c15",
+    "reports/README.md": "ccdaf75f775804c6ccfcc50403e848888714b37d8f3641542c80387479dd366f",
+    "reports/simulation.log": "809e23ff8cdff4d38cd6e34498bfb0a1bde8fcb62143de6bbeac67d63289efdb",
+    "rtl/design.sv": "137da3bb74a6e0e373122155839c1ce1fc67c5444676672cb24c55142dca4b62",
+    "scripts/run_sim.ps1": "82162925645d00f40ceef7fa8d8795ab2c3756f55e812497b51a8f8c3555616a",
+    "sim/filelist.f": "5a9b0b8af8b3475ca84741fd64d0c78c990ba521d0323b7760a2284dfb048b8e",
+    "sim/run.sh": "69ba39c036bb86894a97fd505a534f2a7945a888b8f182bb32f80dbf06be6e8b",
+    "tb/tb_top.sv": "d47b553871f33523aa5b64256037a42906db9b60326d388f522a7a3d90bba71b",
+    "waves/README.md": "6d08b508a8afadffbd00b6cc401f977b87432d22ecda2064d6a2d3288999b944"
+  }
+}
