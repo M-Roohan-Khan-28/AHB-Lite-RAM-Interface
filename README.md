@@ -1,14 +1,12 @@
-# AHB-Lite RAM & directed verification
+# AHB-Lite RAM Interface and Directed Verification
 
-**Verilog / SystemVerilog · RTL and verification exercise**
+**SystemVerilog · 16-word RAM · Registered address and control**
 
-This standalone repository preserves the original `ahb-lite-ram` exercise from my `hdl-labs` collection. Original RTL, testbench, simulator scripts and existing evidence are preserved byte-for-byte. This packaging step is not a new simulation or a claim of full protocol compliance.
+A 16-word, 32-bit RAM interface that captures address and transfer-control information before processing the corresponding data phase. The implementation accepts aligned word transfers and includes a directed simulation testbench.
 
-## Overview and original documentation
+`HREADYOUT` remains high, including during error conditions. The implemented response behaviour is documented as a bounded model; complete AHB-Lite protocol compliance has not been established.
 
-Extract source and examine address/data phasing, HREADY, transfer size and error limitations before claiming protocol compliance.
-
-See [the original exercise README](SOURCE_README.md) for its existing specification, source layout and tool instructions. The text above identifies review goals; it does not claim that new enhancements have already been implemented.
+See [original source documentation](SOURCE_README.md) for the baseline files and the verification-status section below for the retained simulation evidence.
 
 ## Run
 
@@ -32,4 +30,4 @@ Source commit: `df8d6f66898a08df75cd2071ddac7bbba9ba9b16`. Source path: `project
 
 ## Next engineering work
 
-Review the specification and implementation, run the supplied tests, add independently justified checks, and record actual results and known limitations. Waveform screenshots can be added later; no fabricated screenshots or coverage figures are needed.
+Planned work focuses on checking address/data phasing, HREADY stalls, transfer-size and alignment handling, and error-response behaviour against the selected AHB-Lite specification before extending compliance claims.
