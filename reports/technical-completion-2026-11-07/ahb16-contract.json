@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "origin": "simulator",
+  "source_filename": "ahb16-contract.vcd",
+  "source_sha256": "24298edc6de5eaeb53434e9f113873e21315645f6e3c99a1345543e562719373",
+  "timescale": "1ps",
+  "start_tick": 0,
+  "end_tick": 2665000,
+  "source_final_tick": 2665000,
+  "signals": [
+    {
+      "name": "ahb16_contract_test.HCLK",
+      "code": "!",
+      "width": 1,
+      "kind": "reg",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HRESETn",
+      "code": "\"",
+      "width": 1,
+      "kind": "reg",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HSEL",
+      "code": "#",
+      "width": 1,
+      "kind": "reg",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HADDR",
+      "code": "$",
+      "width": 8,
+      "kind": "reg",
+      "bit_range": "[7:0]"
+    },
+    {
+      "name": "ahb16_contract_test.HTRANS",
+      "code": "%",
+      "width": 2,
+      "kind": "reg",
+      "bit_range": "[1:0]"
+    },
+    {
+      "name": "ahb16_contract_test.HWRITE",
+      "code": "&",
+      "width": 1,
+      "kind": "reg",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HSIZE",
+      "code": "'",
+      "width": 3,
+      "kind": "reg",
+      "bit_range": "[2:0]"
+    },
+    {
+      "name": "ahb16_contract_test.HWDATA",
+      "code": "(",
+      "width": 32,
+      "kind": "reg",
+      "bit_range": "[31:0]"
+    },
+    {
+      "name": "ahb16_contract_test.HREADY",
+      "code": ")",
+      "width": 1,
+      "kind": "reg",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HRDATA[31]",
+      "code": "*",
+      "width": 1,
+      "kind": "wire",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HRDATA[0]",
+      "code": "I",
+      "width": 1,
+      "kind": "wire",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HREADYOUT",
+      "code": "J",
+      "width": 1,
+      "kind": "wire",
+      "bit_range": ""
+    },
+    {
+      "name": "ahb16_contract_test.HRESP",
+      "code": "K",
+      "width": 1,
+      "kind": "wire",
+      "bit_range": ""
+    }
+  ],
+  "same_tick_collapses": 0,
+  "functional_result": "NOT_ASSESSED_BY_RENDERER"
+}

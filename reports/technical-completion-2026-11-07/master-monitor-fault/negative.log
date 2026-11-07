@@ -1,0 +1,16 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish exit ahb16_master_negative -do "run -all; quit -code 0" 
+# Start time: 23:38:27 on Nov 07,2026
+# Loading sv_std.std
+# Loading work.ahb16_master_negative
+# Loading work.ahb16_master_monitor
+# run -all
+# ** Fatal: Expected address instability detection, got 0
+#    Time: 56 ns  Scope: ahb16_master_negative File: C:/R_MIGRATION_BACKUP/Roohan_GitHub_Launch_Kit/Roohan_GitHub_Launch_Kit/build/tc-check/ahb-monitor-fault/verification/negative/ahb16_master_negative.sv Line: 30
+# ** Note: $finish    : C:/R_MIGRATION_BACKUP/Roohan_GitHub_Launch_Kit/Roohan_GitHub_Launch_Kit/build/tc-check/ahb-monitor-fault/verification/negative/ahb16_master_negative.sv(30)
+#    Time: 56 ns  Iteration: 0  Instance: /ahb16_master_negative
+# End time: 23:38:28 on Nov 07,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

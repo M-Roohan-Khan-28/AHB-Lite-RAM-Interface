@@ -1,0 +1,13 @@
+﻿diff --git a/verification/assertions/ahb16_master_monitor.sv b/verification/assertions/ahb16_master_monitor.sv
+index a26f01f..f567c93 100644
+--- a/verification/assertions/ahb16_master_monitor.sv
++++ b/verification/assertions/ahb16_master_monitor.sv
+@@ -23,7 +23,7 @@ module ahb16_master_monitor #(parameter bit FATAL=1) (
+       stalled=0; violations=0;
+       held_sel=0;held_write=0;held_addr=0;held_trans=0;held_size=0;held_wdata=0;
+     end else begin
+-      if(stalled) begin
++      if(1'b0 && stalled) begin
+         if({HSEL,HADDR,HTRANS,HWRITE,HSIZE} !==
+            {held_sel,held_addr,held_trans,held_write,held_size})
+           bad("address/control changed during global HREADY wait");

@@ -1,0 +1,8 @@
+{
+    "source_revision":  "3a0262b5e871a15d86ba532273b244672294bd0a",
+    "fault":  "old-response",
+    "mutant_sha256":  "D38410A8AF0252BCB21FE046BC1FB9BE129A0ECA963356E984BF24D23D0248EA",
+    "wrapper_exit_code":  1,
+    "expected_mismatch_seen":  true,
+    "diagnostic":  "# ** Fatal: AHB16_MISMATCH phase=1 addr=0c ready=1 expected readyout/resp/data=0/1/00000000 observed=1/1/00000000 accepted=82 retired=81"
+}
