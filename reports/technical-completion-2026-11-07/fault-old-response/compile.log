@@ -1,0 +1,10 @@
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+Start time: 21:43:40 on Nov 07,2026
+vlog -sv C:\R_MIGRATION_BACKUP\Roohan_GitHub_Launch_Kit\Roohan_GitHub_Launch_Kit\build\test-runs\tc-ahb16-old-rtl.sv C:\R_MIGRATION_BACKUP\Roohan_GitHub_Launch_Kit\Roohan_GitHub_Launch_Kit\build\tc\ahb\tb\ahb16_contract_test.sv 
+-- Compiling module ahb_lite_slave_ram
+-- Compiling module ahb16_contract_test
+
+Top level modules:
+	ahb16_contract_test
+End time: 21:43:40 on Nov 07,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

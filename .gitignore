@@ -5,3 +5,4 @@
 **/*.ucdb
 **/*.vcd
 
+**/__pycache__/

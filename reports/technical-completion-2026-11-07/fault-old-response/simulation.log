@@ -1,0 +1,16 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish exit ahb16_contract_test -do "run -all; quit -code 0" 
+# Start time: 21:43:44 on Nov 07,2026
+# Loading sv_std.std
+# Loading work.ahb16_contract_test
+# Loading work.ahb_lite_slave_ram
+# run -all
+# ** Fatal: AHB16_MISMATCH phase=1 addr=0c ready=1 expected readyout/resp/data=0/1/00000000 observed=1/1/00000000 accepted=82 retired=81
+#    Time: 1686 ns  Scope: ahb16_contract_test File: C:/R_MIGRATION_BACKUP/Roohan_GitHub_Launch_Kit/Roohan_GitHub_Launch_Kit/build/tc/ahb/tb/ahb16_contract_test.sv Line: 52
+# ** Note: $finish    : C:/R_MIGRATION_BACKUP/Roohan_GitHub_Launch_Kit/Roohan_GitHub_Launch_Kit/build/tc/ahb/tb/ahb16_contract_test.sv(52)
+#    Time: 1686 ns  Iteration: 0  Instance: /ahb16_contract_test
+# End time: 21:43:46 on Nov 07,2026, Elapsed time: 0:00:02
+# Errors: 1, Warnings: 0

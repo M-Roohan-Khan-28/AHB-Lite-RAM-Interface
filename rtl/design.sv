@@ -21,10 +21,14 @@ logic        transfer_q;
 logic        write_q;
 logic        error_q;
 logic [3:0]  index_q;
+typedef enum logic [1:0] {RESP_OK, RESP_ERROR_WAIT, RESP_ERROR_FINISH} response_state_t;
+response_state_t response_state;
 integer      i;
 
-assign HREADYOUT = 1'b1;
-assign HRESP = transfer_q && error_q;
+// An invalid transfer has a two-cycle ERROR response. The first phase inserts
+// a local wait; the second completes when global HREADY permits retirement.
+assign HREADYOUT = response_state != RESP_ERROR_WAIT;
+assign HRESP = response_state != RESP_OK;
 assign HRDATA = (transfer_q && !write_q && !error_q) ?
                 memory[index_q] : 32'h0000_0000;
 
@@ -38,10 +42,16 @@ begin
         write_q <= 1'b0;
         error_q <= 1'b0;
         index_q <= 4'd0;
+        response_state <= RESP_OK;
 
         for(i = 0; i < 16; i = i + 1)
             memory[i] <= 32'h0000_0000;
 
+    end
+    else if(response_state == RESP_ERROR_WAIT)
+    begin
+        // Advance the locally inserted wait independently of global HREADY.
+        response_state <= RESP_ERROR_FINISH;
     end
     else if(HREADY)
     begin
@@ -55,6 +65,12 @@ begin
         error_q <= (HADDR[1:0] != 2'b00) ||
                    (HADDR > 8'h3C) ||
                    (HSIZE != 3'b010);
+
+        if(HSEL && HTRANS[1] && ((HADDR[1:0] != 2'b00) ||
+                                  (HADDR > 8'h3C) || (HSIZE != 3'b010)))
+            response_state <= RESP_ERROR_WAIT;
+        else
+            response_state <= RESP_OK;
 
     end
 
