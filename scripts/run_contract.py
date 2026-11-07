@@ -96,7 +96,7 @@ def main():
             report["waveform"] = {"path": str(vcd),
                                   "sha256": hashlib.sha256(vcd.read_bytes()).hexdigest()}
             signals = ["ahb16_contract_test." + p for p in
-                       "HCLK HRESETn HSEL HADDR HTRANS HWRITE HSIZE HWDATA HREADY HRDATA* HREADYOUT HRESP".split()]
+                       "HCLK HRESETn HSEL HADDR HTRANS HWRITE HSIZE HWDATA HREADY HRDATA[[]31] HRDATA[[]0] HREADYOUT HRESP".split()]
             renderer = root / "tools/vcd_to_svg.py"
             render = [sys.executable, str(renderer), "--vcd", str(vcd),
                       "--signals", *signals, "--output", str(out / "ahb16-contract.svg"),
