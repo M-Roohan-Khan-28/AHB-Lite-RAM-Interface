@@ -1,0 +1,8 @@
+{
+    "source_revision":  "3a0262b5e871a15d86ba532273b244672294bd0a",
+    "fault":  "live-address-fault",
+    "mutant_sha256":  "9643D749757B6C344C8AD1C5B7F924705F8236694D06386DE847E63C64EF0C2A",
+    "wrapper_exit_code":  1,
+    "expected_mismatch_seen":  true,
+    "diagnostic":  "# ** Fatal: AHB16_MISMATCH phase=0 addr=00 ready=1 expected readyout/resp/data=1/0/67748553 observed=1/0/942a73c3 accepted=17 retired=16"
+}

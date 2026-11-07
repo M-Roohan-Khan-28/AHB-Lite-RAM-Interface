@@ -4,23 +4,42 @@
 
 A 16-word, 32-bit RAM interface that captures address and transfer-control information before processing the corresponding data phase. The implementation accepts aligned word transfers and includes a directed simulation testbench.
 
-`HREADYOUT` remains high, including during error conditions. The implemented response behaviour is documented as a bounded model; complete AHB-Lite protocol compliance has not been established.
+The corrected endpoint gives a two-cycle ERROR response for unsupported
+size, misalignment, or range: `HRESP=1,HREADYOUT=0` followed by
+`HRESP=1,HREADYOUT=1`. The [bounded specification](docs/SPECIFICATION.md)
+describes its word-only interface and its global-ready pipeline behavior.
+Complete AHB-Lite protocol compliance has not been established.
+
+At tested source commit `3a0262b5e871a15d86ba532273b244672294bd0a`,
+the [new independent regression](docs/RESULTS.md) passed 810 pin comparisons
+over 122 accepted addresses and detected both a disposable old-response
+control and a live-address write fault with nonzero wrapper exits. Its raw
+logs, JSON and [measured waveform](reports/technical-completion-2026-11-07/ahb16-contract.svg)
+are separate from historical reports. The legacy bench retains its old
+single-cycle response expectations and is historical, not the corrected
+response oracle.
 
 See [original source documentation](SOURCE_README.md) for the baseline files and the verification-status section below for the retained simulation evidence.
 
 ## Run
 
-From the repository root, with the required ModelSim/Questa executables and appropriate licence available:
+From the repository root, with ModelSim/Questa executables and Python 3:
 
-```bash
-bash sim/run.sh
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/run_regression.ps1 -OutputDir C:\short\ahb16-run-unique -CaptureWave
 ```
 
-Existing Windows instructions, where supplied, are retained in `scripts/`. Do not assume the testbench will run in every edition of a simulator. Check [the retained validation report](source-docs/VALIDATION.md) and the original README.
+Choose a new output directory for each run. The original `sim/run.sh` and
+`scripts/run_sim.ps1` remain for the inherited bench and its historical
+single-cycle response; use the new runner for corrected-RTL qualification.
+Check [the retained validation report](source-docs/VALIDATION.md) and the
+original README for the earlier baseline.
 
 ## Verification status
 
-The included logs are historical evidence copied from the source repository. **The extracted copy has not been simulated by this extraction script.** Re-run before reporting fresh results. Some original exercises were blocked by verification-feature licence restrictions; those restrictions are not changed by packaging.
+The original `reports/` logs are historical extraction evidence. The new
+contract's executed results are under `reports/technical-completion-2026-11-07/`.
+Verification-feature licence restrictions are unchanged.
 
 ## Provenance and changes
 
