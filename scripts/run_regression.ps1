@@ -16,4 +16,4 @@ if ($CaptureWave) { $arguments += '--capture-wave' }
 & $command @arguments
 $code = $LASTEXITCODE
 if ($code -ne 0) { exit $code }
-Write-Output "AHB16_REGRESSION_PASS checks=810 output=$out"
+Write-Output "AHB16_REGRESSION_PASS checks=924 negatives=3 output=$out"

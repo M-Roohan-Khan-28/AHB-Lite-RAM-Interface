@@ -48,7 +48,8 @@ def main():
     out.mkdir(parents=True)
     rtl = (args.rtl or root / "rtl/design.sv").resolve()
     bench = root / "tb/ahb16_contract_test.sv"
-    source = [rtl, bench]
+    source = [rtl, root / "verification/assertions/ahb16_master_monitor.sv",
+              bench, root / "verification/negative/ahb16_master_negative.sv"]
     report = {
         "repository": "AHB-Lite-RAM-Interface",
         "source_revision": subprocess.check_output(
@@ -81,14 +82,32 @@ def main():
         entry = {"top": "ahb16_contract_test", "command": command,
                  "simulator_exit_code": code, "status": "FAIL"}
         report["simulations"].append(entry)
-        marker = ("AHB16_CONTRACT_PASS checks=810 accepted=122 retired=119 "
-                  "commits=40 errors=12 stalls=8 seed=0x28A81607")
+        marker = ("AHB16_CONTRACT_PASS checks=924 accepted=139 retired=135 "
+                  "commits=40 errors=12 stalls=9 seed=0x28A81607")
         if (code or re.search(r"\*\*\s+(?:Error|Fatal):", log) or
                 "# Errors: 0, Warnings: 0" not in log or "$finish" not in log or
                 len(re.findall(re.escape(marker), log)) != 1):
             raise RuntimeError("AHB16 contract failed or exact marker missing")
         entry["status"] = "PASS"
         entry["marker"] = marker
+        negative_command = [vsim, "-c", "-onfinish", "exit",
+                            "ahb16_master_negative", "-do", "run -all; quit -code 0"]
+        negative_code, negative_log = invoke(negative_command, out, out / "negative.log")
+        negative_entry = {"top": "ahb16_master_negative", "command": negative_command,
+                          "simulator_exit_code": negative_code, "status": "FAIL"}
+        report["simulations"].append(negative_entry)
+        negative_marker = "AHB16_MASTER_NEGATIVE_PASS cases=3 legal=1"
+        named = ["address", "write_data", "transfer_control"]
+        if (negative_code or re.search(r"\*\*\s+(?:Error|Fatal):", negative_log) or
+                "# Errors: 0, Warnings: 0" not in negative_log or
+                "$finish" not in negative_log or
+                len(re.findall(re.escape(negative_marker), negative_log)) != 1 or
+                any(negative_log.count("AHB16_MASTER_NEGATIVE_CASE_PASS " + n) != 1
+                    for n in named)):
+            raise RuntimeError("AHB16 master-negative detection failed")
+        negative_entry["status"] = "PASS"
+        negative_entry["marker"] = negative_marker
+        print("PASS " + negative_marker)
         if args.capture_wave:
             vcd = out / "ahb16-contract.vcd"
             if not vcd.is_file() or not vcd.stat().st_size:

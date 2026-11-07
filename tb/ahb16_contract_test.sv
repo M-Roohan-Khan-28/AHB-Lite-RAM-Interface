@@ -9,6 +9,10 @@ module ahb16_contract_test;
   wire [31:0] HRDATA;
   wire HREADYOUT,HRESP;
   ahb_lite_slave_ram dut(.*);
+  int master_violations;
+  ahb16_master_monitor master_mon(.HCLK(HCLK),.HRESETn(HRESETn),.HSEL(HSEL),
+    .HREADY(HREADY),.HREADYOUT(HREADYOUT),.HRESP(HRESP),.HWRITE(HWRITE),.HADDR(HADDR),.HTRANS(HTRANS),
+    .HSIZE(HSIZE),.HWDATA(HWDATA),.violations(master_violations));
   always #5 HCLK=~HCLK;
 
   logic [31:0] ref_mem[0:15];
@@ -135,6 +139,10 @@ module ahb16_contract_test;
     bad_address(8'hfc,2);
 
     // Reset cancels pending valid write and both ERROR phases.
+    step(1,2,1,2,8'h10,0,1);
+    step(0,0,0,2,0,32'h1234abcd,0); // externally stalled write
+    reset_all();
+    for(int i=0;i<16;i++) read_word(i);
     step(1,2,1,2,8'h00,0,1);
     reset_all();
     for(int i=0;i<16;i++) read_word(i);
@@ -146,6 +154,7 @@ module ahb16_contract_test;
     reset_all();
     read_word(0);
 
+    if(master_violations!=0) $fatal(1,"AHB16 legal master false positive=%0d",master_violations);
     if(accepted<100 || commits<40 || errors!=12 || stalls<8)
       $fatal(1,"AHB16_COUNT_MISMATCH accepted=%0d commits=%0d errors=%0d stalls=%0d",
           accepted,commits,errors,stalls);
