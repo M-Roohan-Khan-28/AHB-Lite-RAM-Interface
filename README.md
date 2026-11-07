@@ -10,11 +10,12 @@ size, misalignment, or range: `HRESP=1,HREADYOUT=0` followed by
 describes its word-only interface and its global-ready pipeline behavior.
 Complete AHB-Lite protocol compliance has not been established.
 
-At tested source commit `3a0262b5e871a15d86ba532273b244672294bd0a`,
-the [new independent regression](docs/RESULTS.md) passed 810 pin comparisons
-over 122 accepted addresses and detected both a disposable old-response
-control and a live-address write fault with nonzero wrapper exits. Its raw
-logs, JSON and [measured waveform](reports/technical-completion-2026-11-07/ahb16-contract.svg)
+At tested source commit `8d482a8da9c28d91d10beb51e826d884090b7372`,
+the [new independent regression](docs/RESULTS.md) passed 924 pin comparisons
+over 139 accepted addresses, including reset of an externally stalled write.
+Three reset-isolated malformed-master waits were detected. Disposable old-response,
+live-address and master-monitor faults each caused nonzero wrapper exits. Its raw
+logs, JSON and [measured waveform](reports/technical-completion-2026-11-07/master-monitor/ahb16-contract.svg)
 are separate from historical reports. The legacy bench retains its old
 single-cycle response expectations and is historical, not the corrected
 response oracle.

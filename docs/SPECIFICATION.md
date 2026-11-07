@@ -18,6 +18,12 @@ retiring. A speculative following address held during the first phase is
 ignored and may be cancelled before completion. Successful operations retain
 zero local wait cycles.
 
+The verification-only master monitor requires address/control and write data to
+remain stable across externally imposed global HREADY waits. It permits the
+specified cancellation at the first-to-second ERROR phase and is qualified
+against three reset-isolated malformed-master cases. A reset cancels a pending
+externally stalled write.
+
 This endpoint has no `HBURST` port or full interconnect. The tests establish
 the bounded behavior above, not complete AHB-Lite compliance. Historical
 source, attribution, provenance and prior one-cycle-error evidence remain in

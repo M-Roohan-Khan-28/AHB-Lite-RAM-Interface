@@ -1,5 +1,14 @@
 # AHB16 response-contract results — 7 November 2026
 
+## Additional master-wait qualification
+
+Clean source 8d482a8da9c28d91d10beb51e826d884090b7372 passed from a fresh local clone with ModelSim Intel FPGA Starter Edition vsim 2020.1 Simulator 2020.02 Feb 28 2020. The independent endpoint model recorded 924 pin comparisons, 139 accepted and 135 retired phases, 40 commits, 12 errors and nine external stall edges. It reset a pending write while global HREADY was low. The passive master checker found zero violations in legal traffic. Its separate reset-isolated negative top detected three prohibited master changes (address, write data and HTRANS), and one legal held wait passed. Both tops and the wrapper exited 0. [Raw logs, JSON and measured VCD/SVG](../reports/technical-completion-2026-11-07/master-monitor/) retain simulator version, hashes, commands and source revision.
+
+A disposable monitor mutation masked the wait-stability predicate. The negative top reported an expected address detection count of 0 instead of 1; the [fault wrapper exited 1](../reports/technical-completion-2026-11-07/master-monitor-fault/). The mutation was not committed. The earlier 810-check result and response/data-phase mutant logs below remain historical evidence at their original source revision.
+
+
+## Earlier 810-check source
+
 Tested source commit: `3a0262b5e871a15d86ba532273b244672294bd0a`.
 ModelSim Intel FPGA Starter Edition `vsim 2020.1 Simulator 2020.02
 Feb 28 2020`. Deterministic xorshift32 seed `0x28A81607`.
