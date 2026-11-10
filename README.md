@@ -57,6 +57,7 @@ Planned work focuses on checking address/data phasing, HREADY stalls, transfer-s
 The [AMBA-hosted adapter and exact run procedure](docs/DETERMINISTIC_AHB_UVM.md)
 qualify the unchanged RTL with 45 functional scenarios / 10,497 comparisons,
 23 SVA controls, six scoreboard controls and 11 expected fault failures. The
-43 required substeps include the separate existing 924-comparison portable gate.
+44 required substeps add 48 runner-fixture qualification checks and retain the
+separate existing 924-comparison portable gate.
 Coverage, randomization and original advanced ALU/APB remain NOT RUN. This bounded
 milestone does not establish full AHB compliance or physical implementation.
