@@ -51,3 +51,12 @@ Source commit: `df8d6f66898a08df75cd2071ddac7bbba9ba9b16`. Source path: `project
 ## Next engineering work
 
 Planned work focuses on checking address/data phasing, HREADY stalls, transfer-size and alignment handling, and error-response behaviour against the selected AHB-Lite specification before extending compliance claims.
+
+## Separate deterministic UVM/SVA milestone
+
+The [AMBA-hosted adapter and exact run procedure](docs/DETERMINISTIC_AHB_UVM.md)
+qualify the unchanged RTL with 45 functional scenarios / 10,497 comparisons,
+23 SVA controls, six scoreboard controls and 11 expected fault failures. The
+43 required substeps include the separate existing 924-comparison portable gate.
+Coverage, randomization and original advanced ALU/APB remain NOT RUN. This bounded
+milestone does not establish full AHB compliance or physical implementation.
