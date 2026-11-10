@@ -6,8 +6,9 @@ global `HREADY` is high. The corresponding write data is retired in the
 following data phase using the saved index; `HREADY=0` holds normal pipeline
 state and prevents a write commit. Unselected/IDLE/BUSY phases are ignored.
 The implemented size is word (`HSIZE=010`). Misalignment, out-of-range
-addresses, and other sizes return an ERROR and cannot update RAM. Invalid
-and unselected reads return zero. Active-low asynchronous reset clears RAM
+addresses, and other sizes return an ERROR and cannot update RAM. Invalid reads return zero. When no selected read is pending, HRDATA is zero.
+An unselected live address phase does not discard a previously accepted read;
+that read still retires using its saved address/control. Active-low asynchronous reset clears RAM
 and pending response state.
 
 The baseline source had a single ready ERROR cycle. The new response FSM
